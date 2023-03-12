@@ -1,0 +1,38 @@
+.heading1, 
+.heading2,
+.heading3,
+.heading4 {
+  line-height: 1.2em;
+}
+.heading1 {
+  font-size: $font-size-base * 2;
+  @media only screen and (min-width: $breakpoint-md) {
+    font-size: $font-size-base * 3;
+  }
+}
+
+.heading2 {
+  font-size: $font-size-base * 1.8;
+  @media only screen and (min-width: $breakpoint-md) {
+    font-size: $font-size-base * 2.44;
+  }
+}
+
+.heading3 {
+  font-size: $font-size-base * 1.6;
+  @media only screen and (min-width: $breakpoint-md) {
+    font-size: $font-size-base * 1.93;
+  }
+}
+
+.heading4 {
+  font-size: $font-size-base * 1.4;
+  @media only screen and (min-width: $breakpoint-md) {
+    font-size: $font-size-base * 1.56;
+  }
+}
+
+.text-large {
+  font-size: 1.2em;
+  line-height: $line-height-large;
+}

@@ -1,0 +1,36 @@
+.the-form {
+  border: 1px solid $gray1;
+  padding: 2em;
+
+  &__title {
+    margin-bottom: 1em;
+  }
+
+  &__group {
+    margin-bottom: 1em;
+    label {
+      display: block;
+      margin-bottom: .2em;
+    }
+
+    &_checkbox {
+      label {
+        display: inline;
+      }
+    }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    &[type='text'],
+    &[type='email']{
+      padding: .7em;
+    }
+  }
+
+  &__select {
+    height: 2.5em;
+  }
+}

@@ -1,0 +1,13 @@
+.app-form {
+  margin-bottom: 3em;
+  &__w-app-img {
+    text-align: center;
+  }
+
+  &__app-img {
+    display: none;
+    @media only screen and (min-width: $breakpoint-md) {
+      display: inline-block;
+    }
+  }
+}

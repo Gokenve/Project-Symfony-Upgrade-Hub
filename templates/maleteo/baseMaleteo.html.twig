@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <title>{% block title %}Maleteo{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="assets/styles/styles.css">
+    {% endblock %}
+</head>
+    <body>    
+        <div class="wrapper">
+            <div class="container-fluid">
+            <header class="header">
+                <img src="assets/img/logo.svg" alt="Maleteo">
+            </header>
+            </div>
+        </div>
+        <main>
+        {% block contenido %}{% endblock %}
+        </main>
+        <footer class="footer">
+        <div class="wrapper">
+            <div class="container-fluid">
+            <img src="assets/img/logo.svg"
+                alt="Maleteo"
+                class="footer__logo">
+            <p class="footer__claim">
+                Hecho con ❤️en Madrid
+            </p>
+            </div>
+        </div>
+        </footer>
+    </body>
+</html>

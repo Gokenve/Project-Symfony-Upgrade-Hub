@@ -1,0 +1,11 @@
+.footer {
+  padding: 2em 0;
+  background: $gray5;
+  color: $white;
+  text-align: center;
+
+  &__logo {
+    margin-bottom: 1.5em;
+    filter: brightness(100);
+  }
+}
