@@ -107,7 +107,7 @@
             </div>
             <div class="col-md-5 col-md-offset-1">
                 <div class="the-form">
-                <form action="">
+                <form action="maleteo" method="post">
                     <p class="the-form__title heading3">
                     Solicita una demo
                     </p>
@@ -118,8 +118,10 @@
                     </label>
                     <input type="text"
                             id="name"
+                            name="name"
                             class="the-form__input"
-                            placeholder="Vincent Chase">
+                            placeholder="Vincent Chase"
+                            required>
                     </div>
 
                     <div class="the-form__group">
@@ -128,40 +130,52 @@
                     </label>
                     <input type="email"
                             id="name"
+                            name="email"
                             class="the-form__input"
-                            placeholder="vincent@mga.com">
+                            placeholder="vincent@mga.com"
+                            required>
                     </div>
 
                     <div class="the-form__group">
                     <label for="city">
                         Ciudad
                     </label>
-                    <select name=""
+                    <select name="city"
                             id="city"
                             class="the-form__input the-form__select">
-                        <option value="">Madrid</option>
-                        <option value="">Puerto Hurraco</option>
-                        <option value="">Villabolluyos</option>
+                        <option>Almería</option>
+                        <option>Barcelona</option>
+                        <option>Bilbao</option>
+                        <option>Cádiz</option>
+                        <option>Madrid</option>
+                        <option>Palma de Mallorca</option>
+                        <option>San Sebastián</option>
+                        <option>Sevilla</option>
+                        <option>Valencia</option>
                     </select>
                     </div>
 
                     <div class="the-form__group the-form__group_checkbox">
                     <input type="checkbox"
-                            id="privacity">
+                            name="checkbox"
+                            id="privacity"
+                            required>
                     <label for="privacity">
                         Aceptas la <a href="#">política de privacidad</a>
                     </label>
                     </div>
-
-                    <input type="button"
+                    <input type="submit"
                         class="the-form__btn btn btn-lg btn-primary"
-                        value="Enviar">
+                        value="Enviar"
+                        >
                 </form>
+                {% if message %}
+                <p class="the-form__message">{{ message }}</p>
+                {% endif %}
                 </div>
             </div>
             </div>
         </section>
-
         <section class="opinions">
             <h2 class="opinions__title heading2">
             Opiniones de otros guardianes
