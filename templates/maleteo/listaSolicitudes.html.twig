@@ -1,0 +1,34 @@
+{% extends 'maleteo/baseMaleteo.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="assets/styles/styles.scss">
+{% endblock %}
+
+{% block contenido %}
+	<div class="wrapper">
+		<div class="container-fluid">
+			<section class="opinions">
+				<h2 class="opinions__title heading2">
+					Listado de Demos solicitadas
+				</h2>
+				<ul class="row">
+					{% for demo in demos %}
+						<li class="col-md-4">
+							<div class="opinion">
+								<p class="opinion__author text-large">
+									{{ demo.name }}
+								</p>
+								<p class="opinion__author text-large">
+									{{ demo.email }}
+								</p>
+								<p class="opinion__author-address">
+									{{ demo.city }}
+								</p>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</section>
+		</div>
+	</div>
+{% endblock %}
