@@ -1,12 +1,16 @@
 {% extends 'maleteo/baseMaleteo.html.twig' %}
 
 {% block contenido %}
+	{% for message in app.flashes('success')  %}
+		<p>{{ message }}</p>
+	{% endfor %}
 	<div class="jumbo">
 		<div class="wrapper">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="jumbo__ww-title">
+
 							<div class="jumbo__w-title">
 								<h1 class="jumbo__title heading1">
 									Gana dinero guardando equipaje a viajeros como tu
@@ -145,9 +149,6 @@
 								</div>
 								<input type="submit" class="the-form__btn btn btn-lg btn-primary" value="Enviar">
 							</form>
-							{% if message %}
-								<p class="the-form__message">{{ message }}</p>
-							{% endif %}
 						</div>
 					</div>
 				</div>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Demo;
 use App\Entity\Opinions;
+use App\Form\GuardianType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,7 @@ class MaleteoController extends AbstractController {
         $repositorio = $doctrine->getRepository(Opinions::class);
         $opinions = $repositorio->findByLastThreeOpinions();
 
-        // Otra manera de haberlo hecho
+        // Otra manera de haber conseguido las últimas 3 opiniones 
         //$opinions = $repositorio->findBy([],['id'=>'DESC'], 3);
 
         $nombre = $request->request->get('name');
@@ -35,8 +36,8 @@ class MaleteoController extends AbstractController {
             $doctrine->persist($demo);
 
             $doctrine->flush();
-
-            return $this-> render('/maleteo/mainMaleteo.html.twig', ['demo' => $demo, 'message' => 'Solicitud enviada correctamente.', 'opinions' => $opinions]);
+            $this-> addFlash('success', 'Petición de demo enviada correctamente!!');
+            return $this-> render('/maleteo/mainMaleteo.html.twig', ['demo' => $demo, 'opinions' => $opinions]);
 
         }
 
@@ -69,9 +70,9 @@ class MaleteoController extends AbstractController {
         $opinion4->setCity('San Sebastian');
 
         $opinion5 = new Opinions();
-        $opinion5->setComent('Maletear: (vb.) Arreglar y cargar las maletas');
-        $opinion5->setAuthor('Luis Tovar');
-        $opinion5->setCity('Valencia');
+        $opinion5->setComent('El sabio no se sienta para lamentarse, sino que se pone alegremente a su tarea de reparar el daño hecho');
+        $opinion5->setAuthor('William Shakespeare');
+        $opinion5->setCity('Londres');
 
         $doctrine->persist($opinion1);
         $doctrine->persist($opinion2);
@@ -86,13 +87,32 @@ class MaleteoController extends AbstractController {
     }
 
     // Ruta creada para mostrar todas las solicitudes de Demo
-    #[Route('/maleteo/solicitudes', name:'listaSolicitudes')]
+    #[Route('/maleteo/solicitudes', name:'demosList')]
     public function allDemosRequest (EntityManagerInterface $doctrine) {
 
         $repositorio = $doctrine->getRepository(Demo::class);
         $demos = $repositorio->findAll();
 
-        return $this-> render('/maleteo/listaSolicitudes.html.twig', ['demos' => $demos]); 
+        return $this-> render('/maleteo/demosList.html.twig', ['demos' => $demos]); 
+
+    }
+
+    #[Route('/maleteo/opiniones', name: 'maleteoOpinions')]
+    public function newOpinion(Request $request, EntityManagerInterface $doctrine) {
+
+        $form = $this->createForm(GuardianType::class);
+        $form->handleRequest($request);
+
+        if ($form-> isSubmitted() && $form-> isValid()) {
+            $opinion = $form-> getData();
+            $doctrine-> persist($opinion);
+            $doctrine-> flush();
+            $this-> addFlash('success', 'Opinion insertada correctamente!!');
+            return $this-> redirectToRoute('maleteo');
+
+        }
+
+        return $this->renderForm('maleteo/newOpinion.html.twig', ['opinionForm'=> $form]);
 
     }
 
