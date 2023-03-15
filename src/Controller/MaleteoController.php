@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MaleteoController extends AbstractController {
 
+    
     #[Route('/maleteo', name: 'maleteo', methods:['GET', 'POST'])]
     public function home(Request $request, EntityManagerInterface $doctrine) {
 
@@ -20,14 +21,14 @@ class MaleteoController extends AbstractController {
         $opinions = $repositorio->findByLastThreeOpinions();
 
         // Otra manera de haber conseguido las últimas 3 opiniones 
-        //$opinions = $repositorio->findBy([],['id'=>'DESC'], 3);
+        //! $opinions = $repositorio->findBy([],['id'=>'DESC'], 3);
 
         $nombre = $request->request->get('name');
         $email = $request->request->get('email');
         $ciudad = $request->request->get('city');
-        $checkbox = $request->request->get('checkbox');
 
-        if ($checkbox === 'on') {
+        // No encontre otra forma para validar el formulario y enviarlo a BBDD
+        if ($_POST) {
             $demo = new Demo;
             $demo -> setName("$nombre");
             $demo -> setEmail("$email");
@@ -97,6 +98,7 @@ class MaleteoController extends AbstractController {
 
     }
 
+    // Ruta creada para insertar opiniones de los Guardianes
     #[Route('/maleteo/opiniones', name: 'maleteoOpinions')]
     public function newOpinion(Request $request, EntityManagerInterface $doctrine) {
 
